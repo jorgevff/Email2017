@@ -44,6 +44,7 @@ public class MailClient
             System.out.println("No new mail.");
         }
         else {
+            //guarda el correo recibido
             ultimoCorreo = item;
             item.print();
             
@@ -62,7 +63,9 @@ public class MailClient
         MailItem item = new MailItem(user, to, subject, message);
         server.post(item);
     }
-    
+    /**
+     * imprime el ultimo correo recibido
+     */
     public void ultimoCorreoRecibido()
     {
         if(ultimoCorreo == null){
