@@ -11,6 +11,8 @@ public class MailClient
     private MailServer server;
     // The user running this client.
     private String user;
+    //Se guarda el ultimo correo
+    private MailItem ultimoCorreo;
 
     /**
      * Create a mail client run by user and attached to the given server.
@@ -19,6 +21,8 @@ public class MailClient
     {
         this.server = server;
         this.user = user;
+        ultimoCorreo = null;
+        
     }
 
     /**
@@ -40,8 +44,11 @@ public class MailClient
             System.out.println("No new mail.");
         }
         else {
+            ultimoCorreo = item;
             item.print();
+            
         }
+        
     }
 
     /**
@@ -55,4 +62,18 @@ public class MailClient
         MailItem item = new MailItem(user, to, subject, message);
         server.post(item);
     }
+    
+    public void ultimoCorreoRecibido()
+    {
+        if(ultimoCorreo == null){
+            System.out.println("No hay correos guardados");
+        }
+        else{
+            ultimoCorreo.print();
+        }
+        
+    }
+    
+   
+    
 }
